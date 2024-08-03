@@ -29,4 +29,13 @@ public class User {
     private boolean mfaEnabled;
     private String otp;
     private LocalDateTime otpExpiration;
+
+    public User(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.role = "ROLE_USER"; // Default role
+        this.mfaEnabled = false; // Default MFA setting
+    }
+
 }
