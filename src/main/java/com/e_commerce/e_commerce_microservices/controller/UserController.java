@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.e_commerce.dto.SignupRequest;
+import com.e_commerce.e_commerce_microservices.entity.MessageResponse;
+import com.e_commerce.e_commerce_microservices.entity.User;
 import com.e_commerce.e_commerce_microservices.repository.UserRepository;
 
 @RestController
@@ -21,6 +23,11 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<?> registerUSer(@RequestBody SignupRequest singnUpRequest){
-        if(userRepository.existsByUsername)
+        if(userRepository.existsByUsername(singnUpRequest.getUsername())){
+            return ResponseEntity.badRequest().body(new MessageResponse("Error: Username is already taken")); 
+        }
+        User user = new User(singnUpRequest.getUsername(),singnUpRequest.getEmail(),passwordEncoder.encode(singnUpRequest.getPassword());
+        userRepository.save(user);
+        return ResponseEntity.ok(new MessageResponse("user registered successfully"));
     }
 }
