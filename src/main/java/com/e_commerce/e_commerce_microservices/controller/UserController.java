@@ -22,11 +22,12 @@ public class UserController {
     private PasswordEncoder passwordEncoder;
 
     @PostMapping("/register")
-    public ResponseEntity<?> registerUSer(@RequestBody SignupRequest singnUpRequest){
-        if(userRepository.existsByUsername(singnUpRequest.getUsername())){
-            return ResponseEntity.badRequest().body(new MessageResponse("Error: Username is already taken")); 
+    public ResponseEntity<?> registerUSer(@RequestBody SignupRequest singnUpRequest) {
+        if (userRepository.existsByUsername(singnUpRequest.getUsername())) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Error: Username is already taken"));
         }
-        User user = new User(singnUpRequest.getUsername(),singnUpRequest.getEmail(),passwordEncoder.encode(singnUpRequest.getPassword());
+        User user = new User(singnUpRequest.getUsername(), singnUpRequest.getEmail(),
+                passwordEncoder.encode(singnUpRequest.getPassword()));
         userRepository.save(user);
         return ResponseEntity.ok(new MessageResponse("user registered successfully"));
     }
