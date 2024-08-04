@@ -26,6 +26,9 @@ public class UserController {
         if (userRepository.existsByUsername(singnUpRequest.getUsername())) {
             return ResponseEntity.badRequest().body(new MessageResponse("Error: Username is already taken"));
         }
+        if (userRepository.existsByEmail(singnUpRequest.getEmail())) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Error: Email is already in use!"));
+        }
         User user = new User(singnUpRequest.getUsername(), singnUpRequest.getEmail(),
                 passwordEncoder.encode(singnUpRequest.getPassword()));
         userRepository.save(user);
