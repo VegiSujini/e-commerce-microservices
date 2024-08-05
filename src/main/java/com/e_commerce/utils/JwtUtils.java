@@ -9,5 +9,7 @@ public class JwtUtils {
     private String jwtSecret;
     @Value("${jwt.expirationMs}")
     private int jwtExpirationMs;
-    public String generateJwtToken(UserDe)
+    public String generateJwtToken(UserDetailsImpl userDetails){
+        
+    }
 }
