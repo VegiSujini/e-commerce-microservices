@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.e_commerce.e_commerce_microservices.entity.LoginRequest;
+import com.e_commerce.e_commerce_microservices.entity.LoginResponse;
 import com.e_commerce.service.MFAService;
 import com.e_commerce.utils.JwtUtils;
 
